@@ -43,16 +43,16 @@ $(document).ready(() => {
 
         let newLi = $('<li>').addClass('dropdown-item text-light nav-item'),
             newATag = $('<a>'),
-            newResort = capitalizeFirst($('#add-resort-input').val());
+            newResort = capitalizeFirst($('#add-resort-name').val());
 
         if (stringValidation(newResort)) {
             newLi.attr('data-name', newResort);
             newATag.text(newResort);
             newLi.append(newATag);
             $('.dropdown-menu').prepend(newLi);
-            $('#add-resort-input').val('');
+            $('#add-resort-name').val('');
         } else {
-            $('#add-resort-input').val('');
+            $('#add-resort-name').val('');
         }
 
     })

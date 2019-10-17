@@ -1,26 +1,3 @@
-*****BASIC, INSTANT VERSION*****
-
-A user enters a ski resort and clicks submit
-
-that ski resort is matched to a key in our resorts obj
-
-The key returns a value of the latitude and longitude of that resort.
-
-Those coord. are passed into the weather api url
-
-a function gets the snow forecast for that resort for the next 24 hours
-    - Open weather API can return the snow accumulation for the past 3 hours.
-    - We can check if the accumulation for any three hour period over the next
-        24 or 48 hours is greater than a certain amount.
-    - Check times by returning the first 8 objects with a unix timestamp 
-        greater than or equal to this moment.
-
-    - OPEN WEATHER IS SO INACCURATE IT IS USELESS.
-
-
-An api is called to the LIFX lightbulb.  
-    Depending on how much snow there is forecasted a specific color,
-    brightness, and effect will be passed to the light.
 
 
 
@@ -72,60 +49,25 @@ A notification is sent to the user informing them how much snow was received.
 
 
 
+******POSSIBLE FEATURES******
 
+- Buttons next to each resort to add to favorites once a user is logged in.
+- Adding an alarm function
+- Moving database to a node server
+- Adding ability for the user to be notified anytime a resort is forecasts for 
+    a chosen weather parameter.
+- Moving to darkSky API and historical data (this will rework most of the app)
+- Add a modal with inputs for adding a resort and address
 
-******PSEUDO FOR MAIN APP****** 
+    - Use API to convert address to lat and longitude
+    - Use API to find timezone based on latitude and longitude
 
-A user enters the page and does not sign in.
-
-The user picks a ski resort from the dropdown list.
-
-The weather api is called for that location.
-    - The light api is called in the weather ajax call and the light changes
-        color for the weather.
-    - The default weather conditions are returned in an object.
-
-The weather condtions object is passed into a function to create a display card.
-    - The function creates a new card
-        - div class='card' and a width
-    - create an img tag with class 'card-img-top'
-    - Add weather icon url to img `http://openweathermap.org/img/wn/${iconId}@2x.png`
-    - append img tag to card
-    - create a div with class='card-body'
-    loop through the object 
-        - Create a div with class='card-text'
-        - Create a header for the data type (wind, rain total etc)
-        - creae a p tag for the data
-        - add the key as header, data as text in p tag.
-        - Append header and p tag to card-text div
-        - Append div to card-body div
-    
-    - Delete whatever is in the div that contains the card
-    - Show the div that contains the card
-    - Add the card to the div that contains it.
-
-
-If a user is signed in
-    - show the favorites drop down
-    - If that user has favorites in the database
-        - Call the function to populate the dropdown with buttons.
-
-When a user clicks the favorite icon next to a resort 
-    - Call function to add that resort to the database
-    - Call function to populate the dropdown.
-
-When a user clicks the unfavorite icon next to a favorited resort.
-    - Call function to delete that resort from database
-    - Call function to populate the dropdown
-
-
-
-
-
-
-
-******BUGS******
-
-    - A PUT call to set a state color of the light does not override an effect  
-        that was made with a POST call.
-    - Need to get the .replce '-' with ' ' function to replace all '-'s
+    - To add a place to the database.
+        - User enters a resort name and address.
+            - Address is parased by a function to convert it to http format
+            - Address is passed in to openCageData url
+            - Request is made to openCageData
+                - Response contains latitude and longitude for resort and timezone
+                - The resort name as a key and an object of lat, long, and timezone 
+                    is added to firebase favorites for that user.  
+                - The new resort is added to that user's favorites list

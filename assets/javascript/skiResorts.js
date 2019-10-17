@@ -7,7 +7,7 @@ let skiResorts = {
     'whistler': {
         'lat': '50.1150',
         'long': '-122.9486',
-        'tz': 'America/Los_Angeles'
+        'tz': 'America/Vancouver'
     },
     'northstar': {
         'lat': '39.2746',
