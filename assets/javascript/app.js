@@ -13,7 +13,7 @@ $(document).ready(() => {
     $('#map').attr('src', `https://www.google.com/maps/embed/v1/view?key=${MAPS_KEY}
     &center=47.608868,-122.335884&zoom=18&maptype=satellite`);
 
-    $('.dropdown-item').on('click', function () {
+    $(document.body).on('click', '.dropdown-item', function () {
         let resortName = $(this).attr('data-name'),
 
             lat = skiResorts[resortName].lat,
@@ -41,19 +41,24 @@ $(document).ready(() => {
     $('#add-resort-submit').on('click', (event) => {
         event.preventDefault();
 
-        let newLi = $('<li>').addClass('dropdown-item text-light nav-item'),
-            newATag = $('<a>'),
-            newResort = capitalizeFirst($('#add-resort-name').val());
+        let resortName = $('#add-resort-name').val(),
+            resortAddress = $('#add-resort-address').val();
 
-        if (stringValidation(newResort)) {
-            newLi.attr('data-name', newResort);
-            newATag.text(newResort);
-            newLi.append(newATag);
-            $('.dropdown-menu').prepend(newLi);
-            $('#add-resort-name').val('');
-        } else {
-            $('#add-resort-name').val('');
-        }
+        addNewResort(skiResorts, resortName, resortAddress);
+
+        // let newLi = $('<li>').addClass('dropdown-item text-light nav-item'),
+        //     newATag = $('<a>'),
+        //     newResort = capitalizeFirst($('#add-resort-name').val());
+
+        // if (stringValidation(newResort)) {
+        //     newLi.attr('data-name', newResort);
+        //     newATag.text(newResort);
+        //     newLi.append(newATag);
+        //     $('.dropdown-menu').prepend(newLi);
+        //     $('#add-resort-name').val('');
+        // } else {
+        //     $('#add-resort-name').val('');
+        // }
 
     })
 })
