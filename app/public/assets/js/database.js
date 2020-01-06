@@ -15,14 +15,12 @@ firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
 
 // Pushes parameters to database.
-function pushToDatabase(username, resort) {
+function pushToDatabase(username, resort, data) {
     /* Each username will have their own tree with their favorite resorts at this
         location. */
     let newFavRef = database.ref(username + '/favorites/' + resort);
     // sets a new resort with the name of the resort.
-    newFavRef.set({
-        resort: resort
-    });
+    newFavRef.set(data);
 }
 
 // Remove a child from the database.
@@ -30,19 +28,10 @@ function removeFromDb(username, resort) {
     database.ref(username + '/favorites/' + resort).remove();
 }
 
+function getUserResorts(username) {
+    let userRef = database.ref(username + '/favorites/');
 
-// This will only be used if we add the favorites option.
-/* ******************************************* */
-// When a favoite button is clicked, add the resort to the DB.
-$('#add').on('click', (event) => {
-    event.preventDefault();
-    pushToDatabase('kramer', $('input').val());
-    console.log('You clicked');
-})
-// When a remove button is clicked, remove the resort to the DB.
-$('#remove').on('click', (event) => {
-    event.preventDefault();
-    removeFromDb('kramer', $('input').val());
-    console.log('You removed');
-})
-/* ****************************************** */
+    userRef.once('value').then((snap) => {
+        addResorts(snap.val(), 'fav-item', 'fav-resorts');
+    })
+}

@@ -1,73 +1,109 @@
+### Icons
+- Icons can be found on darkskyapp.github.io/skycons
+
+### Functions needed
+
+    - get a timestamp from ____ hours ago relative to current.
+    - Parse the JSON Dark Sky response to create an object to render
+    - Take in different weather types and output certain colors/effects
+
+### API's to Use
+
+    - Dark Sky
+    - GEOCoding API to change addresses to lat long
+    - LIFX API
+    - Twilio to send a text to you when you wake up displaying the weather
+        properties you asked for.
+
+# Dark Sky API
+
+    - Icon data point will have the name for the weather forecasted.
+    - Use axios to make requests directly from Node.js
+        - This is because Dark Sky does not support CORS.
+        - Your Node server is the proxy server between your client and 
+            the Dark Sky servers.
+
+# Main function of the app is to get the exact weather you want send to you
+    when you want it.
+
+# User stories
+
+    - Targeted towards outdoor enthusiasts who's activities are weather
+        dependent, e.g. Backcountry skiers and snowboarders, in-bounds skiers
+        and snowboarders, rock climbers, mountaineers, snowmobiliers,
+        wind-surfers.
+    - A user may not be able to get the exact weather parameters they want for
+        the exact locations they want and may not want to deal with having to
+        look them up all the time.
+        - This app allows them to choose the parameters they want and don't 
+            want then tell the app to text or email those results to them at
+            a desired time an date.
+        - A user can also choose to have this be a recurring notification.
+    - Skiers and snowboarders most importantly will need to know what the 
+        weather has been for the past 12-24 hours.
+        - Specifically the type of weather, temp hi-lo, freezing levels, trends 
+            in freezing levels, wind speed and direction, and precip type and
+            amounts.
+        - For this I will need to figure out how to get historical data for the
+            past n hours.
+        - May need to calculate certain data myself such as trends in freezing
+            levels.
 
 
+# Main functionality - This is the MVP
 
-*****VERSION WITH A MAP ON THE UI***** 
-
-In this version there is a google map api used on the homepage.
-
-The user can click anywhere on the map
-
-An api call will return the latitude and longitude for wherever they
-clicked.
-
-These coordinates will be passed into the weather api
-
-The weather api returns a snow forecast
-
-The snow amount is passed into the light api
-
-The light changes color, brightness, and effect.
-
-
-
-*****VERSION WITH NOTIFICATIONS*****
-
-The user can select a resort and a snow level to receive notifications about.
-
-If the snow level forecasted for that resort reaches the threshold specified,
-a notification will be sent to the user informing them that the resort is 
-forecasted to get that snow level.  
-
-The user's light will also be set to a color, brightness, and effect 
-corresponding to the notification.
-
-
-
-*****VERSION WITH ALARM*****
-
-The user can select a time to 'wake up'
-
-When this time comes, the app calls the weather api and checks how much 
-snow was received OVERNIGHT
-    - This version requires an API that can give us historical data or 
-        a server that can check the weather throughout the night and store
-        how much snow was received each time the api was called
-
-The light is then passed the snow level data to change to a certain color
-
-A notification is sent to the user informing them how much snow was received.
+    - User enters the time and date of the alarm, the weather parameters they
+        want to receive, and the location they desire.
+    - Dark Sky api is called and the current forecast parameters for the user's
+        location are displayed on the page.
+    - A post request is made to the server with the three parameters of data in
+        the body.
+    - The server is listening for a post request on /api/alarm
+    - The server receives the request made to that url and executes the below
+        code.
+    - The time and date in the body are passed into a function to convert them
+        to cron format which is stored.
+    - A sequelize query gets the lat and long associated with the location.
+    - a url is assembled for the dark sky api using the lat and long.
+    - The desired weather parameters are stored in some kind of structure to be 
+        used later.
+    - A node-schedule job is created for the user's desired time.
+    - When the job fires, 
+        - A dark sky request is made and returns a json response.
+        - The response is fed into a function which will return a string
+            containing the desired parameters from the response.
+            - This string is passed into the twilio api which will send the 
+                string as a text message to the user.
+        - The 'icon' value in the response is passed to a sequelize query 
+            which will return the proper data values (color, effect etc.) for
+            the LIFX API call.
+            - These data values are used to make a request to the LIFX API to 
+                set the color, effects, etc for the light.
+        
+        - The server then returns to a listening state.
 
 
+# Features
 
-******POSSIBLE FEATURES******
+MVP - Choose any weather parameters the user wants
+MVP - Have weather texted to the user at a time and date
+    - Have weather emailed to user at a time and date
+MVP - Integrate a color changing light bulb to change to a color and effect for
+        the weather
+    - User can specifiy what colors and effect they want for different weather.
+    - Different light bulbs like LIFX or Phillips Hue can all be used.
+    - Users can add their own locations which are saved to their account.
+    - Have a mobile app that can send notifications instead of text/email.
 
-- Buttons next to each resort to add to favorites once a user is logged in.
-- Adding an alarm function
-- Moving database to a node server
-- Adding ability for the user to be notified anytime a resort is forecasts for 
-    a chosen weather parameter.
-- Moving to darkSky API and historical data (this will rework most of the app)
-- Add a modal with inputs for adding a resort and address
 
-    - Use API to convert address to lat and longitude
-    - Use API to find timezone based on latitude and longitude
+## Concerns
 
-    - To add a place to the database.
-        - User enters a resort name and address.
-            - Address is parased by a function to convert it to http format
-            - Address is passed in to openCageData url
-            - Request is made to openCageData
-                - Response contains latitude and longitude for resort and timezone
-                - The resort name as a key and an object of lat, long, and timezone 
-                    is added to firebase favorites for that user.  
-                - The new resort is added to that user's favorites list
+    - Is there a limit to the number of scheduled alarms that can be running at
+        any one time?
+        - Where are these alarms stored?
+        - Do the scheduled job objects just disappear from memory once they
+            have fired?
+        - Is the limit of scheduled alarms based on the server's memory?
+    - To actually put this type of program into production, the user would need
+        to enter their private LIFX api token which isn't safe for the user.
+        - Is there another way for a user to connect a light?
