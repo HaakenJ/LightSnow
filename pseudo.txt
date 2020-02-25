@@ -49,6 +49,21 @@
         - May need to calculate certain data myself such as trends in freezing
             levels.
 
+# UI/UX
+
+    - Checkboxes for user to select the weather parameters they want to receive
+    - Users need to sign up to add a phone number to receive info when they want it
+    - Logged in users can also add the API token for their LIFX lightbulb
+    - Non-logged in users can use the app to see current and past weather data
+    - Dropdown to select a ski resort, climbing area, or mountain
+    - Favorites dropdown rendered when a user is logged in.
+
+# Pages
+
+    - Login / Signup page
+    - My Account page where users can enter/change their phone number, password,
+    and lightbulb token.
+    - Main page
 
 # Main functionality - This is the MVP
 
