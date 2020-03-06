@@ -12,7 +12,7 @@ function App() {
       <Nav/>
       <Container>
         <Row>
-          <Sidebar />
+          <Sidebar></Sidebar>
         </Row>
       </Container>
     </div>
