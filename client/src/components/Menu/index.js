@@ -1,23 +1,25 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 
-function Menu(props) {
+function Menu({
+    title,
+    subtitle,
+    items
+}) {
     return (
         <div>
-            <h3>Ski Resort</h3>
+            <h3>{title}</h3>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Resorts
+                    {subtitle}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    {props.resorts.map(resort => {
+                    {items.map(item => {
                         <Dropdown.Item href="#">resort</Dropdown.Item>
                     })}
                 </Dropdown.Menu>
             </Dropdown>
-            <h3>Weather Parameters</h3>
-            <h3>Alarm Time</h3>
         </div>
     )
 }
