@@ -11,7 +11,9 @@ function Menu(props) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    
+                    {props.resorts.map(resort => {
+                        <Dropdown.Item href="#">resort</Dropdown.Item>
+                    })}
                 </Dropdown.Menu>
             </Dropdown>
             <h3>Weather Parameters</h3>
