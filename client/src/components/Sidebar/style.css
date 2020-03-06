@@ -2,6 +2,11 @@
     background-color: mintcream;
     opacity: .7;
     margin-top: 40px;
-    margin-right: 50px;
     height: 540px;
+}
+
+@media only screen and (min-width: 992px) {
+    .sidebar {
+        margin-right: 50px;
+    }
 }
