@@ -16,7 +16,7 @@ function Menu({
 
                 <Dropdown.Menu>
                     {items.map(item => {
-                        <Dropdown.Item href="#">resort</Dropdown.Item>
+                        <Dropdown.Item href="#">{item}</Dropdown.Item>
                     })}
                 </Dropdown.Menu>
             </Dropdown>
