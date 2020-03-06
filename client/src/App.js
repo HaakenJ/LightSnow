@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Nav from './components/Nav';
 import Sidebar from './components/Sidebar';
+import DisplayBox from './components/DisplayBox';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Container>
         <Row>
           <Sidebar></Sidebar>
+          <DisplayBox></DisplayBox>
         </Row>
       </Container>
     </div>
