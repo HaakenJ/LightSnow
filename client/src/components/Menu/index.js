@@ -10,7 +10,7 @@ function Menu({
         <div>
             <h3>{title}</h3>
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                     {subtitle}
                 </Dropdown.Toggle>
 

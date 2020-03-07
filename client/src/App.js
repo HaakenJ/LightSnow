@@ -17,7 +17,7 @@ function App() {
       <Container>
         <Row>
           <Sidebar>
-            <Menu title="Choose a location" subtitle="places" items={resorts} />
+            <Menu title="Choose a location" subtitle="Places" items={resorts} />
           </Sidebar>
           <DisplayBox></DisplayBox>
         </Row>
