@@ -15,11 +15,13 @@ function Menu({
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    {items.map(item => {
+                    {items.map(item => 
                         <Dropdown.Item href="#">{item}</Dropdown.Item>
-                    })}
+                    )}
                 </Dropdown.Menu>
             </Dropdown>
         </div>
     )
 }
+
+export default Menu;

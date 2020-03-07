@@ -4,7 +4,10 @@ import { Container, Row } from 'react-bootstrap';
 import Nav from './components/Nav';
 import Sidebar from './components/Sidebar';
 import DisplayBox from './components/DisplayBox';
+import Menu from './components/Menu';
 import './App.css';
+
+const resorts = ['Alpental', 'Crystal', 'Stevens', 'Snoqualmie', 'Baker'];
 
 function App() {
   return (
@@ -13,7 +16,9 @@ function App() {
       <Nav/>
       <Container>
         <Row>
-          <Sidebar></Sidebar>
+          <Sidebar>
+            <Menu title="Choose a location" subtitle="places" items={resorts} />
+          </Sidebar>
           <DisplayBox></DisplayBox>
         </Row>
       </Container>
