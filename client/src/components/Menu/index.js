@@ -14,7 +14,7 @@ function Menu({
                     {subtitle}
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
                     {items.map(item => 
                         <Dropdown.Item href="#">{item}</Dropdown.Item>
                     )}
