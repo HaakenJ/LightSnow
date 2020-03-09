@@ -8,8 +8,23 @@ import Menu from './components/Menu';
 import './App.css';
 
 const resorts = ['Alpental', 'Crystal', 'Stevens', 'Snoqualmie', 'Baker'];
-const hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", 
-"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+const hours = createTimeArr(24);
+
+let minutes = createTimeArr(60);
+
+function createTimeArr(num) {
+  let arr = [];
+  for (let i = 0; i < num; i++) {
+    if (i < 10) {
+      let j = i.toString();
+      j = "0" + j;
+      arr.push(j);
+    } else {
+      arr.push(i);
+    }
+  }
+  return arr;
+}
 
 function App() {
   return (
@@ -20,7 +35,7 @@ function App() {
         <Row>
           <Sidebar>
             <Menu title="Choose a location" subtitle="Places" items={resorts} />
-            <Menu title="Choose a time" subtitle="Hour" items={hours} />
+            <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
           </Sidebar>
           <DisplayBox></DisplayBox>
         </Row>

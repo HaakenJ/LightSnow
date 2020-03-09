@@ -4,7 +4,9 @@ import { Dropdown } from 'react-bootstrap';
 function Menu({
     title,
     subtitle,
-    items
+    items,
+    items2,
+    subtitle2
 }) {
     return (
         <div>
@@ -20,6 +22,21 @@ function Menu({
                     )}
                 </Dropdown.Menu>
             </Dropdown>
+
+            { items2 ? 
+                <Dropdown>
+                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                        {subtitle2}
+                    </Dropdown.Toggle>
+    
+                    <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                        {items2.map(item => 
+                            <Dropdown.Item href="#">{item}</Dropdown.Item>
+                        )}
+                    </Dropdown.Menu>
+                </Dropdown>
+                    : ""
+                }
         </div>
     )
 }
