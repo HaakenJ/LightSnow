@@ -9,14 +9,14 @@ function Menu({
     subtitle2
 }) {
     return (
-        <div>
+        <div className="dropdown-container">
             <h3>{title}</h3>
             <Dropdown>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                     {subtitle}
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll", float: "left" }}>
                     {items.map(item => 
                         <Dropdown.Item href="#">{item}</Dropdown.Item>
                     )}

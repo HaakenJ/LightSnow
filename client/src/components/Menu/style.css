@@ -1,4 +1,3 @@
-.dropdown-selector {
-    max-height: 200px !important;
-    overflow-y: scroll !important;
+.dropdown-container {
+    display: flex;
 }
