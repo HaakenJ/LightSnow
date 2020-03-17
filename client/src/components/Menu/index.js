@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import "./style.css";
+import './style.css';
 
 function Menu({
     title,
@@ -10,34 +10,34 @@ function Menu({
     subtitle2
 }) {
     return (
-        <div>
+        <div className='mt-4'>
             <h3>{title}</h3>
-            <div className="drop-container">
-                <Dropdown>
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <div className='drop-container'>
+                <Dropdown className='mt-2'>
+                    <Dropdown.Toggle variant='secondary' id='dropdown-basic'>
                         {subtitle}
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll", float: "left" }}>
+                    <Dropdown.Menu style={{ maxHeight: '200px', overflowY: 'scroll', float: 'left' }}>
                         {items.map(item => 
-                            <Dropdown.Item href="#">{item}</Dropdown.Item>
+                            <Dropdown.Item href='#'>{item}</Dropdown.Item>
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
 
                 { items2 ? 
-                    <Dropdown className="ml-2">
-                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    <Dropdown className='ml-2 className= mt-2'>
+                        <Dropdown.Toggle variant='secondary' id='dropdown-basic'>
                             {subtitle2}
                         </Dropdown.Toggle>
         
-                        <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                        <Dropdown.Menu style={{ maxHeight: '200px', overflowY: 'scroll' }}>
                             {items2.map(item => 
-                                <Dropdown.Item href="#">{item}</Dropdown.Item>
+                                <Dropdown.Item href='#'>{item}</Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-                    : ""
+                    : ''
                 }
             </div>
         </div>
