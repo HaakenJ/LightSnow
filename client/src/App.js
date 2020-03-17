@@ -37,7 +37,8 @@ function App() {
           <Sidebar>
             <Menu title="Choose a location" subtitle="Places" items={resorts} />
             <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
-            <CheckForm labelArr={['Fahrenheit', 'Celcius']} />
+            <CheckForm formLabel='Units' labelArr={ ['Imperial', 'Metric'] } />
+            <CheckForm formLabel='Temperature' labelArr={ ['High', 'Low', 'Average', 'Current'] } />
           </Sidebar>
           <DisplayBox>
             
