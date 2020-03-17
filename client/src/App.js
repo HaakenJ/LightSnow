@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Sidebar from './components/Sidebar';
 import DisplayBox from './components/DisplayBox';
 import Menu from './components/Menu';
+import CheckForm from './components/CheckForm';
 import './App.css';
 
 const resorts = ['Alpental', 'Crystal', 'Stevens', 'Snoqualmie', 'Baker'];
@@ -36,8 +37,11 @@ function App() {
           <Sidebar>
             <Menu title="Choose a location" subtitle="Places" items={resorts} />
             <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
+            <CheckForm labelArr={['Fahrenheit', 'Celcius']} />
           </Sidebar>
-          <DisplayBox></DisplayBox>
+          <DisplayBox>
+            
+          </DisplayBox>
         </Row>
       </Container>
     </div>

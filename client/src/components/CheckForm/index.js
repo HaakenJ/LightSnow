@@ -1,12 +1,18 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-function CheckForm(props) {
+function CheckForm({
+    labelArr
+}) {
     return (
-        <Form>
+        <Form className="mt-5">
             <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label={props.label} />
+                {labelArr.map(label => 
+                    <Form.Check className="mr-2 ml-2" type="checkbox" label={label} />
+                )}
             </Form.Group>
         </Form>
     )
 }
+
+export default CheckForm;
