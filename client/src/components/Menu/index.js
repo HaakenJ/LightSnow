@@ -10,7 +10,7 @@ function Menu({
     subtitle2
 }) {
     return (
-        <div className='mt-4'>
+        <div className='mt-3'>
             <h3>{title}</h3>
             <div className='drop-container'>
                 <Dropdown className='mt-2'>

@@ -7,7 +7,7 @@ function CheckForm({
     formLabel
 }) {
     return (
-        <Form className="mt-4">
+        <Form className="">
             <Form.Label>{ formLabel }</Form.Label>
             <Form.Group className='d-flex flex-wrap' controlId="formBasicCheckbox">
                 { labelArr.map(label => 
