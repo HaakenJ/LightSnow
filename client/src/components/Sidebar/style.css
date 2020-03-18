@@ -1,8 +1,8 @@
 .sidebar {
     background-color: mintcream;
     opacity: .7;
-    margin-top: 40px;
-    height: 540px;
+    margin-top: 15px;
+    height: 600px;
 }
 
 @media only screen and (min-width: 992px) {
