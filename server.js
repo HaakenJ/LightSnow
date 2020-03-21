@@ -1,32 +1,45 @@
 const express = require("express");
-const exphbs = require("express-handlebars");
-const db = require("./app/models");
-const PORT = process.env.PORT || 8080;
+let passport = require('passport');
+let session = require('express-session');
+const mongoose = require("mongoose");
+const MongoStore = require('connect-mongo')(session)
+const routes = require("./routes");
+const PORT = process.env.PORT || 3001;
 const app = express();
 
-const moment = require("moment");
-
-const schedule = require("node-schedule");
-const date = "45 14 6 12 *";
-
-let notification = schedule.scheduleJob(date, () => {
-    console.log("-----------------------------------");
-    console.log("Looks like the alarm for date2 went off");
-    console.log("-----------------------------------");
-})
-
-app.use(express.static("./app/public"));
-
+// Middleware Definitions
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.engine("handlebars", exphbs({ defualtLayout: "main" }));
-app.set("view engine", "handlebars");
+// PassportJS
 
-// TODO: Require routes
+require('./config/passport');
 
-db.sequelize.sync({ force: true }).then(() => {
-    app.listen(PORT, () => {
-        console.log(`App listening on PORT ${PORT}`);
-    })
-})
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect to the Mongo Database
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/adoptaplant", 
+{ useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(session({
+  secret: 'plants are awesome',
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: true,
+  saveUninitialized: true
+}));
+
+
+
+// Static Assets 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// Routing
+app.use(routes);
+
+
+app.listen(PORT, () => {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});

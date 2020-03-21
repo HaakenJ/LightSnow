@@ -1,43 +1,90 @@
-# Light-Snow
+# AdoptAPlant
 
-## Overview
+AdoptAPlant is a web-based service that allows users to adopt plants for a monthly subscription. Users then being able to watch the plants via live streaming video, monitor environmental conditions, and toggle the lights or water the plant via the press of a button.
 
-This application allows a user to select a ski resort and quickly see the most important weather conditions at that resort along with a satellite image of the resort, and if the user owns a LIFX color changing light bulb, the light will change to a color corresponding to the weather at the resort.  This allows users to determine a quick overview of the weather at a resort without even having to read a single line.
+[Live Site](https://adoptaplant.herokuapp.com)
 
+## Getting Started
 
-We used several API's and different technologies for functionallity, such as:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-- Open Weather API for the conditions.
-- LIFX API to operate our lightbulb.
-- Moment.js and Moment.js timezones.
-- OpenCageData API to convert addresses to latitude, longitude, and return a timezone.
-- Anime.js for svg animation.
-- Embedded Google Maps.
-- Firebase Authentication
+### Prerequisites and Installation
 
-### Organization
-  
-- Ski resorts, along with their latitude, longitude, and timezones, are stored in a JavaScript object.  
-- Items from this object are added to a dropdown list that a user can choose from.
-- Choosing a resort passes the latitude and longitude to the weather API.
-- The weather API returns weather data and a weather code.
-- The data is used to populate cards on the page displaying the data.
-- The weather code is passed into a JavaScript object that associates light colors with weather conditions.
-- The parameters for the weather code are returned to the LIFX light bulb API which changes the color of the light.
+You will need a Raspberry Pi for this application.  Specifically, this application was created with a Raspberry Pi 4.  The parts needed 
+in order to get a Raspberry Pi up and running will not be discussed here.
 
-### Usage
-Once the user selects a resort, they will be shown:
-    - The local time of the resort.
-    - Description of the current weather.
-    - Temperature
-    - Wind Speed
-    - Wind Direction
-    - A satellite image of the ski resort on Google Maps.
+#### RasPi Parts List
+    * DHT11 temperature and humidity sensor
+    * A water pump (I used a 12V 3.6W fountain water pump made by Yeeco)
+    * A breadboard and assorted dupont wires (jumpers and male-female)
+    * Raspberry Pi Camera Module (I used the V2 8-megapixel version)
+    * 5V Relay Module
+    * 5V power supply for water pump
+    * Capacitive Soil Moisture Sensor
+    * MCP3008 Analog-to-Digital Converter
+    * Hose from water pump to plant
+    * Various basic gardening equipment (pot, soil, etc.)
 
-The default units are imperial but this can be changed with the toggle switch in the upper, right-hand corner.
+I will not go into detail for how to wire up the different components, there are ample resources for this around the web.  
 
-Users can log in with their Google account info.  This allows them to add a resort by entering a name and address.  The resort is then added to the resorts drop-down list.  The list is stored in the user's local storage so that they have access to the same list each time they return to the page.
+What you will need to do is connect the components to the proper ports on the Raspberry Pi though.  
 
+#### RasPi Connections
+    * DHT11 sensor needs to be connected to GPIO port #17
+    * The water pump will need to be on GPIO port #27
+    * Connect the Raspberry Pi SPI ports to the MCP3008 according to the below diagram with the data of the soil moisture sensor connected to channel 5.  Make sure to enable SPI in your raspi-config
+        
+<![MCP3008 Diagram](https://components101.com/sites/default/files/component_pin/MCP3008-ADC-Pinout.png)>
 
+#### Camera Setup
+    * Folow the below tutorial to set up your camera.
+    * Get your Raspberry Pi's IP address and go to /client/src/components/PlantStream/index.js and set the src of the <img> element to your Raspberry Pi's IP address with port :8081 specified at the end.
 
+[Tutorial](https://www.instructables.com/id/How-to-Make-Raspberry-Pi-Webcam-Server-and-Stream-/)
 
+#### Firebase Setup
+    * Create a Google Firebase account, a Realtime Database, and a new service account.
+    * Download your service-account.json file and save it to the root folder.
+    * Replace the "firebase.initializeApp" code in /controllers/logSensors, pumpQuery, and waterTimer with your own firebase app code.
+
+#### Crontab Setup
+    * Enter your crontab on your Raspberry Pi and set the /controllers/logSensors.js file to run at whatever interval you would like to log the sensor data.
+    * Set both controllers/pumpQuery.js and waterTimer.js to run every minute, close the crontab then enter again to remove the lines for these two files.  
+    This should set those files to run in the background to listen to firebase for changes.  
+
+You can check whether these two processes are running by typing:
+```
+ps -aux
+```
+in your terminal.  You should see both files listed towards the bottom of the list.
+
+Run
+```
+npm install
+npm start
+```
+And you'll be up and running!
+
+## Deployment
+
+If you would like to have this site hosted via heroku or some other hosting service, you will need to forward port 8081 on your home network to allow the stream to be accessible.  
+Do this at your own discression as it opens up many security concerns.
+
+## Built With
+
+* [Node.js](https://nodejs.org/en/) - Javascript Runtime
+* [Express](https://expressjs.com/) - Node.js Web Framework
+* [React](https://reactjs.org/) - JavaScript Library for User Interface
+* [MongoDB](https://www.mongodb.com/) - NoSQL database service
+* [Passport](http://www.passportjs.org/) - Node.js Authentication
+* [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client
+* [Firebase Realtime Database](https://firebase.google.com/) - Realtime cloud database
+
+## Authors
+
+* **Matthew Kiyoi** - [Mkkiyoi](https://github.com/Mkkiyoi)
+* **Kyle Lamont** - [KyleRLamont](https://github.com/KyleRLamont)
+* **Surenkhuu Shagdarsuren** - [slodway2019](https://github.com/slodway2019)
+* **Kramer Johnson** - [HaakenJ](https://github.com/HaakenJ)
+
+See also the list of [contributors](https://github.com/AdoptAPlant/contributors) who participated in this project.
