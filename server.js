@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/adoptaplant",
 { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(session({
-  secret: 'plants are awesome',
+  secret: 'shreddit',
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   resave: true,
   saveUninitialized: true
