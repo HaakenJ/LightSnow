@@ -4,7 +4,6 @@ const router = require("express").Router();
 const signupRoute = require("./signup");
 const loginRoute = require("./login");
 const lightRoute = require("./light");
-const dataRoute = require("./sensorData");
 const timerRoutes = require("./timer");
 
 // API Routes
