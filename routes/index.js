@@ -13,8 +13,6 @@ const timerRoutes = require("./timer");
 router.use(signupRoute);
 router.use(loginRoute);
 router.use(lightRoute);
-router.use(dataRoute);
-router.use(waterRoute);
 router.use(timerRoutes);
 
 // If no API routes are hit, send the React app
