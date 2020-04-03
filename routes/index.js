@@ -5,7 +5,6 @@ const signupRoute = require("./signup");
 const loginRoute = require("./login");
 const lightRoute = require("./light");
 const dataRoute = require("./sensorData");
-const waterRoute = require("./water");
 const timerRoutes = require("./timer");
 
 // API Routes
