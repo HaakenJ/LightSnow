@@ -1,4 +1,7 @@
 .weather-card {
     text-align: center;
     height: 150px;
+    background-color: white !important;
+    opacity: 1;
 }
+
