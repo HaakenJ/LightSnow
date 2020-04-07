@@ -1,8 +1,10 @@
 .sidebar {
     background-color: mintcream;
-    opacity: .7;
     margin-top: 15px;
-    height: 600px;
+    /* IE 5-9 Compatability */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+    filter: alpha(opacity=95);
+    opacity: .95;
 }
 
 @media only screen and (min-width: 992px) {

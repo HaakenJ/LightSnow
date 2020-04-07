@@ -1,7 +1,7 @@
 .display-box {
     background-color: mintcream;
     /* IE 5-9 Compatability */
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-    filter: alpha(opacity=70);
-    opacity: .7;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+    filter: alpha(opacity=95);
+    opacity: .95;
 }
