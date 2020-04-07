@@ -47,6 +47,12 @@ function App() {
           </Sidebar>
           <DisplayBox>
               <WeatherCard title="Local Time" body="07:02" />
+              <WeatherCard title="Wind Speed" body="14 MPH" />
+              <WeatherCard title="Wind Direction" body="SW" />
+              <WeatherCard title="Temperature" body="30 deg F" />
+              <WeatherCard title="Chill Factor" body="18 deg F" />
+              <WeatherCard title="Humidity" body="40%" />
+              <WeatherCard title="Precipitation" body="60%" />
           </DisplayBox>
         </Row>
       </Container>

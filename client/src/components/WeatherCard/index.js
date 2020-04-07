@@ -5,7 +5,7 @@ import './style.css';
 function WeatherCard(props) {
     return (
         <Col sm={12} md={4}>
-            <Card className='weather-card mt-5'>
+            <Card className='weather-card mt-2'>
                 <Card.Title>
                     { props.title }
                 </Card.Title>
