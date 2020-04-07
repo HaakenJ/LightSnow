@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import DisplayBox from "./components/DisplayBox";
 import Menu from "./components/Menu";
 import CheckForm from "./components/CheckForm";
+import WeatherCard from "./components/WeatherCard";
 import "./App.css";
 
 const resorts = ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"];

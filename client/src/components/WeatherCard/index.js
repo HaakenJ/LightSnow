@@ -18,3 +18,5 @@ function WeatherCard(
         </Card>
     )
 }
+
+export default WeatherCard;
