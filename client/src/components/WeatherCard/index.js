@@ -1,21 +1,19 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
+import React from 'react';
+import { Card, Col } from 'react-bootstrap';
+import './style.css';
 
-function WeatherCard(
-    title,
-    body
-) {
+function WeatherCard(props) {
     return (
-        <Card>
-            <Card.body>
+        <Col sm={12} md={4}>
+            <Card class='weather-card'>
                 <Card.Title>
-                    {title}
+                    { props.title }
                 </Card.Title>
-                <Card.Text>
-                    {body}
+                    <Card.Text>
+                    { props.body }
                 </Card.Text>
-            </Card.body>
-        </Card>
+            </Card>
+        </Col>
     )
 }
 
