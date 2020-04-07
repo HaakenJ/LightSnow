@@ -1,14 +1,14 @@
-import React from 'react';
-// import 'bootstrap/dist/css/boostrap.min.css';
-import { Container, Row } from 'react-bootstrap';
-import Nav from './components/Nav';
-import Sidebar from './components/Sidebar';
-import DisplayBox from './components/DisplayBox';
-import Menu from './components/Menu';
-import CheckForm from './components/CheckForm';
-import './App.css';
+import React from "react";
+// import "bootstrap/dist/css/boostrap.min.css";
+import { Container, Row } from "react-bootstrap";
+import Nav from "./components/Nav";
+import Sidebar from "./components/Sidebar";
+import DisplayBox from "./components/DisplayBox";
+import Menu from "./components/Menu";
+import CheckForm from "./components/CheckForm";
+import "./App.css";
 
-const resorts = ['Alpental', 'Crystal', 'Stevens', 'Snoqualmie', 'Baker'];
+const resorts = ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"];
 const hours = createTimeArr(24);
 
 let minutes = createTimeArr(60);
@@ -38,10 +38,10 @@ function App() {
             <Menu title="Choose a location" subtitle="Places" items={resorts} />
             <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
             <div className="mt-3">
-              <CheckForm formLabel='Units' labelArr={ ['Imperial', 'Metric'] } />
-              <CheckForm formLabel='Temperature' labelArr={ ['High', 'Low', 'Average', 'Current'] } />
-              <CheckForm formLabel='Moisture' labelArr={ ['Snow Accumulation', 'Humidity'] } />
-              <CheckForm formLabel='Wind' labelArr={ ['Speed', 'Direction'] } />
+              <CheckForm formLabel="Units" labelArr={ ["Imperial", "Metric"] } />
+              <CheckForm formLabel="Temperature" labelArr={ ["High", "Low", "Average", "Current"] } />
+              <CheckForm formLabel="Moisture" labelArr={ ["Snow Accumulation", "Humidity"] } />
+              <CheckForm formLabel="Wind" labelArr={ ["Speed", "Direction"] } />
             </div>
           </Sidebar>
           <DisplayBox>
