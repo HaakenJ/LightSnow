@@ -46,7 +46,9 @@ function App() {
             </div>
           </Sidebar>
           <DisplayBox>
-            
+              <Col sm={12} md={4}>
+                <WeatherCard title="Local Time" body={Date.now()} />
+              </Col>
           </DisplayBox>
         </Row>
       </Container>
