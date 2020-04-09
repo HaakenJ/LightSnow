@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import CheckForm from '../CheckForm';
 import './style.css';
 
 class WeatherForm extends React.Component {
@@ -66,6 +67,14 @@ class WeatherForm extends React.Component {
                         ) }
                     </Form.Control>
                 </Form.Group>
+                <Form.Label>Units</Form.Label>
+                <CheckForm labelArr={ ["Imperial", "Metric"] } />
+                <Form.Label>Temperature</Form.Label>
+                <CheckForm labelArr={ ["High", "Low", "Average", "Current"] } />
+                <Form.Label>Moisture</Form.Label>
+                <CheckForm labelArr={ ["Snow Accumulation", "Humidity"] } />
+                <Form.Label>Wind</Form.Label>
+                <CheckForm labelArr={ ["Speed", "Direction"] } />
             </Form>
         );
     }

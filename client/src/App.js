@@ -40,12 +40,10 @@ function App() {
             {/* <Menu title="Choose a location" subtitle="Places" items={resorts} /> */}
             <WeatherForm />
             {/* <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" /> */}
-            <div className="mt-3">
-              <CheckForm formLabel="Units" labelArr={ ["Imperial", "Metric"] } />
+              {/* <CheckForm formLabel="Units" labelArr={ ["Imperial", "Metric"] } />
               <CheckForm formLabel="Temperature" labelArr={ ["High", "Low", "Average", "Current"] } />
               <CheckForm formLabel="Moisture" labelArr={ ["Snow Accumulation", "Humidity"] } />
-              <CheckForm formLabel="Wind" labelArr={ ["Speed", "Direction"] } />
-            </div>
+              <CheckForm formLabel="Wind" labelArr={ ["Speed", "Direction"] } /> */}
           </Sidebar>
           <DisplayBox>
               <Row>
