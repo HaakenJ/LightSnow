@@ -39,7 +39,7 @@ function App() {
           <Sidebar>
             {/* <Menu title="Choose a location" subtitle="Places" items={resorts} /> */}
             <WeatherForm />
-            <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
+            {/* <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" /> */}
             <div className="mt-3">
               <CheckForm formLabel="Units" labelArr={ ["Imperial", "Metric"] } />
               <CheckForm formLabel="Temperature" labelArr={ ["High", "Low", "Average", "Current"] } />
