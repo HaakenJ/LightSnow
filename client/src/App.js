@@ -7,6 +7,7 @@ import DisplayBox from "./components/DisplayBox";
 import Menu from "./components/Menu";
 import CheckForm from "./components/CheckForm";
 import WeatherCard from "./components/WeatherCard";
+import WeatherForm from "./components/WeatherForm";
 import "./App.css";
 
 const resorts = ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"];
@@ -36,7 +37,8 @@ function App() {
       <Container>
         <Row>
           <Sidebar>
-            <Menu title="Choose a location" subtitle="Places" items={resorts} />
+            {/* <Menu title="Choose a location" subtitle="Places" items={resorts} /> */}
+            <WeatherForm />
             <Menu title="Choose a time" subtitle="Hour" items={hours} items2={minutes} subtitle2="Minutes" />
             <div className="mt-3">
               <CheckForm formLabel="Units" labelArr={ ["Imperial", "Metric"] } />

@@ -5,12 +5,17 @@ import './style.css';
 class WeatherForm extends React.Component {
     constructor() {
         super();
-        this.places = ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"];
+        this.state = {
+            places: ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"]
+        }
     }
 
     onSubmit = (event) => {
         event.preventDefault();
+    }
 
+    getPlaces = () => {
+        //TO-DO get places from MongoDB
     }
 
     render() {
@@ -21,9 +26,9 @@ class WeatherForm extends React.Component {
                         <h3>Select a location</h3>
                     </Form.Label>
                     <Form.Control as="select">
-                        { places.map(place => {
+                        { this.state.places.map(place => 
                             <option>{place}</option>
-                        }) }
+                        ) }
                     </Form.Control>
                 </Form.Group>
             </Form>
