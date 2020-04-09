@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import CheckForm from '../CheckForm';
 import './style.css';
 
@@ -7,12 +7,15 @@ class WeatherForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            places: ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"]
+            places: ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"],
+            units: 'Imperial',
+            
         }
     }
 
     onSubmit = (event) => {
         event.preventDefault();
+        console.log(event.LocationSelect);
     }
 
     getPlaces = () => {
@@ -39,7 +42,7 @@ class WeatherForm extends React.Component {
         }
 
         return (
-            <Form>
+            <Form className='mt-2 mb-2'>
                 <Form.Group controlId="LocationSelect">
                     <Form.Label>
                         <h3>Select a location</h3>
@@ -68,13 +71,16 @@ class WeatherForm extends React.Component {
                     </Form.Control>
                 </Form.Group>
                 <Form.Label>Units</Form.Label>
-                <CheckForm labelArr={ ["Imperial", "Metric"] } />
+                <CheckForm controlId='Units' labelArr={ ["Imperial", "Metric"] } />
                 <Form.Label>Temperature</Form.Label>
-                <CheckForm labelArr={ ["High", "Low", "Average", "Current"] } />
+                <CheckForm controlId='Temp' labelArr={ ["High", "Low", "Average", "Current"] } />
                 <Form.Label>Moisture</Form.Label>
-                <CheckForm labelArr={ ["Snow Accumulation", "Humidity"] } />
+                <CheckForm controlId='Moisture' labelArr={ ["Snow Accumulation", "Humidity"] } />
                 <Form.Label>Wind</Form.Label>
-                <CheckForm labelArr={ ["Speed", "Direction"] } />
+                <CheckForm controlId='Wind' labelArr={ ["Speed", "Direction"] } />
+                <Button variant="secondary" type="submit" onClick={this.onSubmit}>
+                    Submit
+                </Button>
             </Form>
         );
     }
