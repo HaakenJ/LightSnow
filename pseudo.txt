@@ -122,3 +122,15 @@ MVP - Integrate a color changing light bulb to change to a color and effect for
     - To actually put this type of program into production, the user would need
         to enter their private LIFX api token which isn't safe for the user.
         - Is there another way for a user to connect a light?
+
+
+# Next Steps
+
+### Get a functional form working in the side bar.
+    * Store the data from the sidebar in the state
+    * Write onChange functions to update the state
+
+### Create the map function to display cards given the JSON data provided.
+    * Initially use dummy JSON data.
+    * The displayed data will most likely depend on the form data. 
+        - Form data changing what data is received vs. changing what data is displayed.
