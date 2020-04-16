@@ -9,7 +9,13 @@ class WeatherForm extends React.Component {
         this.state = {
             places: ["Alpental", "Crystal", "Stevens", "Snoqualmie", "Baker"],
             units: 'Imperial',
-            
+            hour: "00",
+            minute: "00",
+            location: "",
+            units: "Imperial",
+            unitArr: ["Imperial", "Metric"],
+            tempArr: ["High", "Low", "Average", "Current"],
+            moistArr: ["Snow Accumulation", "Humidity"]
         }
     }
 
@@ -70,12 +76,28 @@ class WeatherForm extends React.Component {
                         ) }
                     </Form.Control>
                 </Form.Group>
+
                 <Form.Label>Units</Form.Label>
-                <CheckForm controlId='Units' labelArr={ ["Imperial", "Metric"] } />
+                <Form.Group className='d-flex flex-wrap' controlId="units">
+                    { this.state.unitArr.map(unit => 
+                        <Form.Check className='mr-2 ml-2' type='checkbox' label={unit} />
+                    ) }
+                </Form.Group>
+
                 <Form.Label>Temperature</Form.Label>
-                <CheckForm controlId='Temp' labelArr={ ["High", "Low", "Average", "Current"] } />
+                <Form.Group className='d-flex flex-wrap' controlId="temp">
+                    { this.state.tempArr.map(item => 
+                        <Form.Check className='mr-2 ml-2' type='checkbox' label={item} />
+                    ) }
+                </Form.Group>
+
                 <Form.Label>Moisture</Form.Label>
-                <CheckForm controlId='Moisture' labelArr={ ["Snow Accumulation", "Humidity"] } />
+                <Form.Group className='d-flex flex-wrap' controlId="moisture">
+                    { this.state.moistArr.map(item => 
+                        <Form.Check className='mr-2 ml-2' type='checkbox' label={item} />
+                    ) }
+                </Form.Group>
+                <CheckForm controlId='Moisture' labelArr={  } />
                 <Form.Label>Wind</Form.Label>
                 <CheckForm controlId='Wind' labelArr={ ["Speed", "Direction"] } />
                 <Button variant="secondary" type="submit" onClick={this.onSubmit}>
