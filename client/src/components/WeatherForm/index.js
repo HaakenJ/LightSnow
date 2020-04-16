@@ -15,7 +15,8 @@ class WeatherForm extends React.Component {
             units: "Imperial",
             unitArr: ["Imperial", "Metric"],
             tempArr: ["High", "Low", "Average", "Current"],
-            moistArr: ["Snow Accumulation", "Humidity"]
+            moistArr: ["Snow Accumulation", "Humidity"],
+            windArr: ["Speed", "Direction"]
         }
     }
 
@@ -26,6 +27,10 @@ class WeatherForm extends React.Component {
 
     getPlaces = () => {
         //TO-DO get places from MongoDB
+    }
+
+    onCheckboxChange = (event) => {
+        console.log(event.target);
     }
 
     render() {
@@ -77,29 +82,39 @@ class WeatherForm extends React.Component {
                     </Form.Control>
                 </Form.Group>
 
+                {/* Unit Checkboxes */}
                 <Form.Label>Units</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="units">
-                    { this.state.unitArr.map(unit => 
-                        <Form.Check className='mr-2 ml-2' type='checkbox' label={unit} />
+                    { this.state.unitArr.map(item => 
+                        <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
 
+                {/* Temp Checkboxes */}
                 <Form.Label>Temperature</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="temp">
                     { this.state.tempArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' type='checkbox' label={item} />
+                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
-
+                
+                {/* Moisture Checkboxes */}
                 <Form.Label>Moisture</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="moisture">
                     { this.state.moistArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' type='checkbox' label={item} />
+                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
-                <CheckForm controlId='Moisture' labelArr={  } />
+
+                {/* Wind Checkboxes */}
                 <Form.Label>Wind</Form.Label>
-                <CheckForm controlId='Wind' labelArr={ ["Speed", "Direction"] } />
+                <Form.Group className='d-flex flex-wrap' controlId="wind">
+                    { this.state.windArr.map(item => 
+                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
+                    ) }
+                </Form.Group>
+                
+                {/* Submit button */}
                 <Button variant="secondary" type="submit" onClick={this.onSubmit}>
                     Submit
                 </Button>
