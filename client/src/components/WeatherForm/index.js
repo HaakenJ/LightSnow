@@ -12,8 +12,8 @@ class WeatherForm extends React.Component {
             hour: "00",
             minute: "00",
             location: "",
-            units: "Imperial",
-            unitArr: ["Imperial", "Metric"],
+            metric: false,
+            unitArr: ["Metric"],
             tempArr: ["High", "Low", "Average", "Current"],
             moistArr: ["Snow Accumulation", "Humidity"],
             windArr: ["Speed", "Direction"]
@@ -30,7 +30,10 @@ class WeatherForm extends React.Component {
     }
 
     onCheckboxChange = (event) => {
-        console.log(event.target.name);
+        const name = event.target.name.toLowerCase();
+        this.setState({
+            [name]: !this.state[name]
+        })
     }
 
     render() {
@@ -54,6 +57,8 @@ class WeatherForm extends React.Component {
 
         return (
             <Form className='mt-2 mb-2'>
+
+                {/* Location Select */}
                 <Form.Group controlId="LocationSelect">
                     <Form.Label>
                         <h3>Select a location</h3>
@@ -64,6 +69,8 @@ class WeatherForm extends React.Component {
                         ) }
                     </Form.Control>
                 </Form.Group>
+
+                {/* Time Select */}
                 <Form.Group controlId="TimeSelect">
                     <Form.Label>
                         <h3>Select a Time</h3>
@@ -84,10 +91,10 @@ class WeatherForm extends React.Component {
 
                 {/* Unit Checkboxes */}
                 <fieldset>
-                    <Form.Label>Units</Form.Label>
-                    <Form.Group className='d-flex flex-wrap' controlId="units">
+                    <Form.Label>Metric?</Form.Label>
+                    <Form.Group className='d-flex flex-wrap' controlId="metric">
                         { this.state.unitArr.map(item => 
-                            <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='radio' label={item} />
+                            <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='checkbox' label={item} />
                         ) }
                     </Form.Group>
                 </fieldset>
