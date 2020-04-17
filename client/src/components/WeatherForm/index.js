@@ -30,7 +30,7 @@ class WeatherForm extends React.Component {
     }
 
     onCheckboxChange = (event) => {
-        console.log(event.target);
+        console.log(event.target.name);
     }
 
     render() {
@@ -83,12 +83,14 @@ class WeatherForm extends React.Component {
                 </Form.Group>
 
                 {/* Unit Checkboxes */}
-                <Form.Label>Units</Form.Label>
-                <Form.Group className='d-flex flex-wrap' controlId="units">
-                    { this.state.unitArr.map(item => 
-                        <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='checkbox' label={item} />
-                    ) }
-                </Form.Group>
+                <fieldset>
+                    <Form.Label>Units</Form.Label>
+                    <Form.Group className='d-flex flex-wrap' controlId="units">
+                        { this.state.unitArr.map(item => 
+                            <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='radio' label={item} />
+                        ) }
+                    </Form.Group>
+                </fieldset>
 
                 {/* Temp Checkboxes */}
                 <Form.Label>Temperature</Form.Label>
