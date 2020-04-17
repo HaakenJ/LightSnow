@@ -12,10 +12,26 @@ class WeatherForm extends React.Component {
             hour: "00",
             minute: "00",
             location: "",
-            metric: false,
+            units: {
+                metric: false
+            },
+            temp: {
+                high: false,
+                low: false,
+                average: false,
+                current: false
+            },
+            moisture: {
+                accumulation: false,
+                humidity: false
+            },
+            wind: {
+                speed: false,
+                direction: false
+            },
             unitArr: ["Metric"],
             tempArr: ["High", "Low", "Average", "Current"],
-            moistArr: ["Snow Accumulation", "Humidity"],
+            moistArr: ["Accumulation", "Humidity"],
             windArr: ["Speed", "Direction"]
         }
     }
@@ -30,9 +46,13 @@ class WeatherForm extends React.Component {
     }
 
     onCheckboxChange = (event) => {
+        console.log(event.target.attributes.getNamedItem('data-type').value);
+        const type = event.target.attributes.getNamedItem('data-type').value;
         const name = event.target.name.toLowerCase();
         this.setState({
-            [name]: !this.state[name]
+            [type]: {
+                [name]: !this.state[type][name]
+            }
         })
     }
 
@@ -94,7 +114,7 @@ class WeatherForm extends React.Component {
                     <Form.Label>Metric?</Form.Label>
                     <Form.Group className='d-flex flex-wrap' controlId="metric">
                         { this.state.unitArr.map(item => 
-                            <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' name={item} type='checkbox' label={item} />
+                            <Form.Check onChange={this.onCheckboxChange} data-type="units" className='mr-2 ml-2' name={item} type='checkbox' label={item} />
                         ) }
                     </Form.Group>
                 </fieldset>
@@ -103,7 +123,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Temperature</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="temp">
                     { this.state.tempArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
+                        <Form.Check className='mr-2 ml-2' data-type="temp" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
                 
@@ -111,7 +131,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Moisture</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="moisture">
                     { this.state.moistArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
+                        <Form.Check className='mr-2 ml-2' data-type="moisture" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
 
@@ -119,7 +139,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Wind</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="wind">
                     { this.state.windArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' name={item} type='checkbox' label={item} />
+                        <Form.Check className='mr-2 ml-2' data-type="wind" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
                 
