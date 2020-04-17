@@ -46,13 +46,12 @@ class WeatherForm extends React.Component {
     }
 
     onCheckboxChange = (event) => {
-        console.log(event.target.attributes.getNamedItem('data-type').value);
         const type = event.target.attributes.getNamedItem('data-type').value;
         const name = event.target.name.toLowerCase();
+        const items = this.state[type];
+        items[name] = !this.state[type][name];
         this.setState({
-            [type]: {
-                [name]: !this.state[type][name]
-            }
+            [type]: items
         })
     }
 
@@ -123,7 +122,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Temperature</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="temp">
                     { this.state.tempArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' data-type="temp" name={item} type='checkbox' label={item} />
+                        <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' data-type="temp" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
                 
@@ -131,7 +130,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Moisture</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="moisture">
                     { this.state.moistArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' data-type="moisture" name={item} type='checkbox' label={item} />
+                        <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' data-type="moisture" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
 
@@ -139,7 +138,7 @@ class WeatherForm extends React.Component {
                 <Form.Label>Wind</Form.Label>
                 <Form.Group className='d-flex flex-wrap' controlId="wind">
                     { this.state.windArr.map(item => 
-                        <Form.Check className='mr-2 ml-2' data-type="wind" name={item} type='checkbox' label={item} />
+                        <Form.Check onChange={this.onCheckboxChange} className='mr-2 ml-2' data-type="wind" name={item} type='checkbox' label={item} />
                     ) }
                 </Form.Group>
                 
